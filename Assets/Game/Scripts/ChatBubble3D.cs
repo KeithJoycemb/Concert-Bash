@@ -4,12 +4,23 @@ using UnityEngine;
 using TMPro;
 
 public class ChatBubble3D : MonoBehaviour
-{/*
-    public static void Create(Transform parent, Vector3 localPosition, IconType, string text)
+{
+    private SpriteRenderer backgroundSpriteRenderer;
+    private SpriteRenderer iconSpriteRenderer;
+    private TextMeshPro textMeshPro;
+
+    private void Awake()
     {
-        Transform chatBubbleTransform = Instantiate(GameAssets.i.pfChatBubble, parent);
-        chatBubbleTransform.localPosition = localPosition;
-        chatBubbleTransform.GetComponent<ChatBubble3D>().Setup(iconType, text);
-        Destroy(chatBubbleTransform.gameObject, 6f);
-    }*/
+        backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
+        iconSpriteRenderer = transform.Find("Icon").GetComponent<SpriteRenderer>();
+        textMeshPro = transform.Find("Text").GetComponent<TextMeshPro>();
+    }
+    private void Start()
+    {
+        Setup("Hello World!");
+    }
+    private void Setup(string text)
+    {
+        textMeshPro.SetText(text);
+    }
 }
