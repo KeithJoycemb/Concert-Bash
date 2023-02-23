@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,6 +60,11 @@ public class TextWriter : MonoBehaviour
                 i--;
             }
         }
+    }
+
+    internal static void AddWriter_Static(TextMeshPro textMeshPro, string text, float v1, bool v2, bool v3, Action p)
+    {
+        throw new NotImplementedException();
     }
 
     // The Update function is called every frame
