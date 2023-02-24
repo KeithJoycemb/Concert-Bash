@@ -14,7 +14,7 @@ TagManager:
   - LeftHand Physics
   - RightHand Physics
   - NonPhysicsHand
-  - 
+  - Grabable
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Top
+    uniqueID: 3189062819
+    locked: 0
+  - name: Background
+    uniqueID: 3343700493
     locked: 0
