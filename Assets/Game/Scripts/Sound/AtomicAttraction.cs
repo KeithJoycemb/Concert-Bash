@@ -6,6 +6,9 @@ public class AtomicAttraction : MonoBehaviour
 {
     public GameObject atom, attractor;
     public Gradient gradient;
+    public Material material;
+    Material[] sharedMaterial;
+    Color[] sharedColor;
     public int[] attractPoints;
     public Vector3 spacingDirection;
     [Range(0, 20)]
@@ -19,6 +22,24 @@ public class AtomicAttraction : MonoBehaviour
     float[] atomScaleSet;
     public float strengthOfAttraction, maxMagnitude,randomPosDistance;
     public bool useGravity;
+
+
+    public float audioScaleMultiplier,audioEmissionMultiplier;
+
+    [Range(0.0f,1.0f)]
+    public float thresholdEmission;
+
+    float[] audioBandEmissionThreshold;
+    float[] audioBandEmissionColour;
+    float[] audioBandScale;
+
+    public enum emissionThreshold { Buffered,NoBuffer};
+    public emissionThreshold emissionThreshold1 = new emissionThreshold();
+    public enum emissionColour { Buffered, NoBuffer };
+    public emissionColour emissionColour1 = new emissionColour();
+    public enum atomScale { Buffered, NoBuffer };
+    public atomScale atomScale1 = new atomScale();
+
 
     private void OnDrawGizmos()
     {
@@ -43,6 +64,14 @@ public class AtomicAttraction : MonoBehaviour
         atomArray = new GameObject[attractPoints.Length * amountOfAtomPerPoint];
         atomScaleSet = new float[attractPoints.Length * amountOfAtomPerPoint];
 
+        audioBandEmissionThreshold = new float [8];
+        audioBandEmissionColour = new float[8];
+        audioBandScale = new float[8];
+
+        sharedMaterial = new Material[8];
+        sharedColor = new Color[8];
+
+
         int countAtom = 0;
         //instantiate attract points
         for (int i = 0; i< attractPoints.Length;i++)
@@ -56,6 +85,11 @@ public class AtomicAttraction : MonoBehaviour
 
             attractorInstance.transform.parent = this.transform;
             attractorInstance.transform.localScale = new Vector3(scaleAttractPoints, scaleAttractPoints, scaleAttractPoints);
+
+            //set colors to material
+            Material matInstance = new Material(material);
+            sharedMaterial[i] = matInstance;
+            sharedColor[i] = gradient.Evaluate(0.125f * i);
 
             for (int j =0;j<amountOfAtomPerPoint;j++)
             {
@@ -81,7 +115,8 @@ public class AtomicAttraction : MonoBehaviour
                 atomScaleSet[countAtom] = randomScale;
                 atomInstance.transform.localScale = new Vector3(atomScaleSet[countAtom], atomScaleSet[countAtom], atomScaleSet[countAtom]);
                 //atomInstance.transform.parent = transform.parent.transform;
-                
+
+                atomInstance.GetComponent<MeshRenderer>().material = sharedMaterial[i];
                 countAtom++;
             }
         }
@@ -90,6 +125,87 @@ public class AtomicAttraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SelectAudioValues();
+        AtomBehaviour();
+    }
+
+    void AtomBehaviour()
+    {
+        int countAtom = 0;
+        for (int i = 0; i < attractPoints.Length; i++)
+        {
+
+            if(audioBandEmissionThreshold[attractPoints[i]]>=thresholdEmission)
+            {
+                Color audioColor = new Color(sharedColor[i].r * audioBandEmissionColour[attractPoints[i]] * audioEmissionMultiplier,
+                    sharedColor[i].g * audioBandEmissionColour[attractPoints[i]] * audioEmissionMultiplier,
+                    sharedColor[i].b * audioBandEmissionColour[attractPoints[i]] * audioEmissionMultiplier, 1);
+                sharedMaterial[i].SetColor("EmissionColour", audioColor);
+            }
+            else
+            {
+                Color audioColor = new Color(0, 0, 0, 1);
+                sharedMaterial[i].SetColor("EmissionColour", audioColor);
+            }
+
+            for (int j = 0; j < amountOfAtomPerPoint; j++)
+            {
+                atomArray[countAtom].transform.localScale = new Vector3(atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier,
+                    atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier,
+                    atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier);
+                countAtom++;
+            }
+        }
+    }
+
+    void SelectAudioValues()
+    {
+        //Threshold
+        if (emissionThreshold1==emissionThreshold.Buffered)
+        {
+            for(int i = 0;i<8;i++)
+            {
+                audioBandEmissionThreshold[i] = AudioPeer.audioBandBuffer[i];
+            }
+        }
+        if (emissionThreshold1 == emissionThreshold.NoBuffer)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                audioBandEmissionThreshold[i] = AudioPeer.audioBand[i];
+            }
+        }
+
+        //emission colour
+        if (emissionColour1 == emissionColour.Buffered)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                audioBandEmissionColour[i] = AudioPeer.audioBandBuffer[i];
+            }
+        }
+        if (emissionColour1 == emissionColour.NoBuffer)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                audioBandEmissionColour[i] = AudioPeer.audioBand[i];
+            }
+        }
+
+        // Atom scale
+        if (atomScale1 == atomScale.Buffered)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                audioBandScale[i] = AudioPeer.audioBandBuffer[i];
+            }
+        }
+        if (atomScale1 == atomScale.NoBuffer)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                audioBandScale[i] = AudioPeer.audioBand[i];
+            }
+        }
     }
 }

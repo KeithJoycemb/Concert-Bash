@@ -1487,6 +1487,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  material: {fileID: 2100000, guid: 8171418d8197e714b9a67b3eabbe1ca0, type: 2}
   attractPoints: 0100000002000000030000000400000005000000060000000700000008000000
   spacingDirection: {x: 1.43, y: 0, z: 0}
   spacingBetweenAttractPoints: 20
