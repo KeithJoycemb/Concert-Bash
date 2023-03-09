@@ -11,15 +11,15 @@ namespace Game
         public bool hitEnemy;
         public float disruption;
         public GameObject disruptionbar;
+        public GameObject drunkBar;
+        public float drunkLevel;
 
         // Start is called before the first frame update
         void Start()
         {
-            enemyPerformer = GetComponent<GameObject>();
-            player = GetComponent<GameObject>();
-            disruptionbar = GetComponent<GameObject>();
             hitEnemy = false;
             disruption = 0f;
+            drunkLevel = drunkBar.GetComponent<disruptiveBar>().getBarValue();
         }
 
         // Update is called once per frame
@@ -28,7 +28,17 @@ namespace Game
             if (hitEnemy)
             {
                 disruption += 15;
-                disruptiveBar.SetDisruption(disruption);
+                if (drunkLevel==0f)
+                {
+                    
+                    disruptionbar.GetComponent<disruptiveBar>().SetDisruption(disruption);
+                }
+                else
+                {
+                    IncrementWithDrink(disruption);
+                    disruptionbar.GetComponent<disruptiveBar>().SetDisruption(disruption);
+                }
+                
             }
 
 
@@ -43,15 +53,16 @@ namespace Game
 
         private void performerOff(float disruption)
         {
-            disruption = 0f;
+            disruption = 100f;
             enemyPerformer.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            if(other.gameObject.tag=="Performer1")
             hitEnemy = true;
         }
-        private void IncrementWithDrink(float drunkLevel)
+        private void IncrementWithDrink(float disruption)
         {
             if(drunkLevel==10)
             {
@@ -63,7 +74,7 @@ namespace Game
             }
             if(drunkLevel>40)
             {
-                disruption *= 2;
+                disruption *= 2f;
             }
         }
     }

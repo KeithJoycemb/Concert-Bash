@@ -43,9 +43,7 @@ public class DrunkBarInteraction : MonoBehaviour
     }
     private void incrementDisruption(float drunkLevel)
     {
-        if (drunkLevel==10)
-            ThrowInteraction.
-
+        
 
 
 

@@ -10,19 +10,23 @@ namespace Game
         public Gradient gradient;
         public Image fill;
 
-        public void SetMaxDisruption(float disruption)
+        public void SetMaxDisruption(float barValue)
         {
             slider.maxValue = 100;
-            slider.value = disruption;
+            slider.value = barValue;
 
             fill.color = gradient.Evaluate(1f);
         }
 
-        public void SetDisruption(float disruption)
+        public void SetDisruption(float barValue)
         {
-            slider.value = disruption;
+            slider.value = barValue;
 
             fill.color = gradient.Evaluate(slider.normalizedValue);
+        }
+        public float getBarValue()
+        {
+            return slider.value;
         }
     }
 }

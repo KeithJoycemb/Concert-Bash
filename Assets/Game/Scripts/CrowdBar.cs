@@ -1,57 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CrowdBar : MonoBehaviour
+namespace Game
 {
-    public GameObject crowdBar;
-    public float crowdRespect;
-    public float drunkLevel;
-    public float currentDrunkLevel;
-    public bool playable;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CrowdBar : MonoBehaviour
     {
-        crowdBar = GetComponent<GameObject>();
-        crowdRespect = 50f;
-        drunkLevel = 50f;
-        currentDrunkLevel = 10;
-        playable = true;
-    }
+        public GameObject crowdBar, drunkBar;
+        public GameObject player;
+        public float crowdRespect;
+        public float drunkThresh;
+        public float currentDrunkLevel;
+        public bool playable;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(currentDrunkLevel==drunkLevel)
+        // Start is called before the first frame update
+        void Start()
         {
-            crowdRespect -=10;
-        }
-        if(currentDrunkLevel==drunkLevel+10)
-        {
-            crowdRespect -= 20;
-        }
-         if(currentDrunkLevel==drunkLevel+20)
-        {
-            crowdRespect -= 30;
-        }
-         if(currentDrunkLevel==drunkLevel+30)
-        {
-            crowdRespect -= 40;
-        }
-        if(currentDrunkLevel==drunkLevel+40)
-        {
-            crowdRespect -= 50;
+            player = GetComponent<GameObject>();
+            crowdRespect = 50f;
+            drunkThresh = 50f;
+            currentDrunkLevel = drunkBar.GetComponent<disruptiveBar>().getBarValue();
+            playable = true;
         }
 
-        if(crowdRespect==0)
+        // Update is called once per frame
+        void Update()
         {
-            playable = false;
-            onCrowdZero();
+            if (currentDrunkLevel == drunkThresh)
+            {
+                crowdRespect -= 10;
+            }
+            if (currentDrunkLevel == drunkThresh + 10)
+            {
+                crowdRespect -= 20;
+            }
+            if (currentDrunkLevel == drunkThresh + 20)
+            {
+                crowdRespect -= 30;
+            }
+            if (currentDrunkLevel == drunkThresh + 30)
+            {
+                crowdRespect -= 40;
+            }
+            if (currentDrunkLevel == drunkThresh + 40)
+            {
+                crowdRespect -= 50;
+            }
+
+            if (crowdRespect == 0)
+            {
+                playable = false;
+                onCrowdZero();
+            }
         }
-    }
-    private void onCrowdZero()
-    {
-        Debug.Log("You have lost crowd control! Please reset!!");
+        private void onCrowdZero()
+        {
+            Debug.Log("You have lost crowd control! Please reset!!");
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -22,4 +22,4 @@ public class ChatBubble3D : MonoBehaviour
     //[SerializeField] private Sprite happyIconSprite = null;
 
 }
-
+*/
