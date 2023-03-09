@@ -10,7 +10,7 @@ public class AtomicAttraction : MonoBehaviour
     public Vector3 spacingDirection;
     [Range(0, 20)]
     public float spacingBetweenAttractPoints;
-    [Range(0, 20)]
+    [Range(0, 10)]
     public float scaleAttractPoints;
     GameObject[] attractorArray, atomArray;
     [Range(1, 64)]
@@ -31,7 +31,7 @@ public class AtomicAttraction : MonoBehaviour
             Vector3 pos = new Vector3(transform.position.x + (spacingBetweenAttractPoints * i * spacingDirection.x),
                                         transform.position.y + (spacingBetweenAttractPoints * i * spacingDirection.y),
                                         transform.position.z + (spacingBetweenAttractPoints * i * spacingDirection.z));
-            Gizmos.DrawSphere(pos, scaleAttractPoints);
+            Gizmos.DrawSphere(pos, scaleAttractPoints*0.5f);
         }
     }
 
@@ -57,7 +57,7 @@ public class AtomicAttraction : MonoBehaviour
             attractorInstance.transform.parent = this.transform;
             attractorInstance.transform.localScale = new Vector3(scaleAttractPoints, scaleAttractPoints, scaleAttractPoints);
 
-            for (int j =0;j<amountOfAtomPerPoint;i++)
+            for (int j =0;j<amountOfAtomPerPoint;j++)
             {
                 GameObject atomInstance = (GameObject)Instantiate(atom);
                 atomArray[countAtom] = atomInstance;
@@ -80,7 +80,7 @@ public class AtomicAttraction : MonoBehaviour
                 float randomScale = Random.Range(atomScaleMinMax.x, atomScaleMinMax.y);
                 atomScaleSet[countAtom] = randomScale;
                 atomInstance.transform.localScale = new Vector3(atomScaleSet[countAtom], atomScaleSet[countAtom], atomScaleSet[countAtom]);
-                atomInstance.transform.parent = transform.parent.transform;
+                //atomInstance.transform.parent = transform.parent.transform;
                 
                 countAtom++;
             }
