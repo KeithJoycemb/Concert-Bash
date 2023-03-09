@@ -55,6 +55,9 @@ namespace Game
         private void onCrowdZero()
         {
             Debug.Log("You have lost crowd control! Please reset!!");
+            player.SetActive(false);
+
+             
         }
     }
 }

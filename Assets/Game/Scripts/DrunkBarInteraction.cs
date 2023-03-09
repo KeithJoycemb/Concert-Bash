@@ -32,22 +32,11 @@ public class DrunkBarInteraction : MonoBehaviour
         {
             endGame();
         }
-        if (drunkLevel > 10)
-        {
-            incrementDisruption(drunkLevel);
-        }
+       
     }
     private void endGame()
     {
         Debug.Log("You have Lost! Please Reset!");
     }
-    private void incrementDisruption(float drunkLevel)
-    {
-        
-
-
-
-
-
-    }
+  
 }
