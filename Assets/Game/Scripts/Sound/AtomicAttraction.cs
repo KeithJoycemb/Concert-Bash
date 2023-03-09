@@ -140,12 +140,12 @@ public class AtomicAttraction : MonoBehaviour
                 Color audioColor = new Color(sharedColor[i].r * audioBandEmissionColour[attractPoints[i]] * audioEmissionMultiplier,
                     sharedColor[i].g * audioBandEmissionColour[attractPoints[i]] * audioEmissionMultiplier,
                     sharedColor[i].b * audioBandEmissionColour[attractPoints[i]] * audioEmissionMultiplier, 1);
-                sharedMaterial[i].SetColor("EmissionColour", audioColor);
+                sharedMaterial[i].SetColor("EmissionColor", audioColor);
             }
             else
             {
                 Color audioColor = new Color(0, 0, 0, 1);
-                sharedMaterial[i].SetColor("EmissionColour", audioColor);
+                sharedMaterial[i].SetColor("EmissionColor", audioColor);
             }
 
             for (int j = 0; j < amountOfAtomPerPoint; j++)
