@@ -27,8 +27,8 @@ namespace Game
         {
             if (hitEnemy)
             {
-                disruption += 15;
-                disruptiveBar.SetDisruption(disruption);
+                //disruption += 15;
+                //disruptiveBar.SetDisruption(disruption);
             }
 
 

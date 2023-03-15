@@ -6547,6 +6547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 492577346}
+  - component: {fileID: 492577348}
   - component: {fileID: 492577347}
   m_Layer: 0
   m_Name: ChatBubble
@@ -6572,7 +6573,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &492577347
+--- !u!111 &492577347
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492577345}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d6ecf2052dbacef47864bf1ce55e3f63, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d6ecf2052dbacef47864bf1ce55e3f63, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &492577348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6581,9 +6598,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 492577345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00fe2fbf28fce3d48b0c3378b4f1d5ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e89d69e1b7c44c45a9a3cb3284a9a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  happyIconSprite: {fileID: 21300000, guid: dbd740a89921dda4b88862a068aa2b86, type: 3}
+  neutralIconSprite: {fileID: 21300000, guid: bce56438b5775eb4db1d4e3d207643e0, type: 3}
+  angryIconSprite: {fileID: 21300000, guid: f0285b512d716f340ba6f58b336858fe, type: 3}
 --- !u!1 &498072193
 GameObject:
   m_ObjectHideFlags: 0
@@ -14540,7 +14560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 167.2, y: -37.199997}
+  m_AnchoredPosition: {x: 167.20001, y: -37.199997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160931281
@@ -14785,6 +14805,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4de1b6952df6548b9c0684dabf5213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  fill: {fileID: 0}
 --- !u!1 &1342681975
 GameObject:
   m_ObjectHideFlags: 0
