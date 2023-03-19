@@ -17,7 +17,7 @@ public class ToggleRagdoll : MonoBehaviour
         if (collision.gameObject.CompareTag("DisableAnimator"))
         {
             
-            //animator.enabled = false;
+            animator.enabled = false;
         }
     }
 }
