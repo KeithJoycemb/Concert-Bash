@@ -13,10 +13,7 @@ public class DrunkBarInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        drunkBar = GetComponent<GameObject>();
-        player = GetComponent<GameObject>();
         drunkLevel = 0f;
-        bottle = GetComponent<GameObject>();
         nBottle = 0;
     }
 
