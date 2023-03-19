@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         if(health <=0)
         {
             // Destroy(gameObject);
-            animator.enabled = false;
+            //animator.enabled = false;
         }
         if (health > maxHealth)
         {
@@ -41,5 +41,22 @@ public class EnemyHealth : MonoBehaviour
     float CalculateHealth()
     {
         return health / maxHealth;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("DisableAnimator"))
+        {
+            TakeDamage(100); // Decrease the enemy health when collided with the player
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            animator.enabled = false;
+        }
     }
 }
