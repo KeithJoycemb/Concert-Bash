@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         if(health <=0)
         {
             // Destroy(gameObject);
-            //animator.enabled = false;
+           animator.enabled = false;
         }
         if (health > maxHealth)
         {
