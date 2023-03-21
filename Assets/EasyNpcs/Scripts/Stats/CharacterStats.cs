@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+
 namespace Npc_AI
 {
     public class CharacterStats : MonoBehaviour, IAttackable

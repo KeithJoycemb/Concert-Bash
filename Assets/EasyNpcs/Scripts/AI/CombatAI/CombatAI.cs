@@ -35,7 +35,7 @@ namespace Npc_AI
             Gizmos.color = Color.green;
             CapsuleCollider collider = npcAI.GetComponent<CapsuleCollider>();
             Vector3 npcPos = npcAI.transform.position;
-            Gizmos.matrix = Matrix4x4.TRS( new Vector3(npcPos.x, collider == null ? npcPos.y : npcPos.y + collider.height*9f, npcPos.z), 
+            Gizmos.matrix = Matrix4x4.TRS( new Vector3(npcPos.x, collider == null ? npcPos.y : npcPos.y + collider.height*0.9f, npcPos.z), 
                 npcAI.transform.rotation, npcAI.transform.lossyScale );
             if(Selection.Contains (npcAI.gameObject))
                 Gizmos.DrawFrustum( Vector3.zero, npcAI.VisionAngle, npcAI.VisionRange, 0f, 2.5f );
