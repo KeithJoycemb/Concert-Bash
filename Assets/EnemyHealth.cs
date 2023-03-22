@@ -14,12 +14,14 @@ namespace Npc_AI
 
         public GameObject healthBarUI;
         public Slider slider;
+        public GameObject throwable;
 
         protected override void Start()
         {
             animator = GetComponent<Animator>();
             base.Start();
             slider.value = CalculateHealth();
+            throwable = GetComponent<GameObject>();
         }
 
         private void Update()
@@ -46,13 +48,25 @@ namespace Npc_AI
         {
             return GetCurrentHealth().GetValue() / GetMaxHealth().GetValue();
         }
-        //private void OnCollisionEnter(Collision collision)
-        //{
-        //    if (collision.gameObject.CompareTag("DisableAnimator"))
-        //    {
-        //        TakeDamage(100); // Decrease the enemy health when collided with the player
-        //    }
-        //}
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("DisableAnimator"))
+            {
+                TakeDamage(100); // Decrease the enemy health when collided with the player
+            }
+        }
+
+       
+
+        void TakeDamage(int damage)
+        {
+            GetCurrentHealth().SetValue(GetCurrentHealth().GetValue() - damage);
+
+            if (GetCurrentHealth().GetValue() <= 0)
+            {
+                animator.enabled = false;
+            }
+        }
 
         public override void Attacked(GameObject attacker, Attack attack)
         {
