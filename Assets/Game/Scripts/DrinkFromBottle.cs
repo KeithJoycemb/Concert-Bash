@@ -10,7 +10,7 @@ public class DrinkFromBottle : MonoBehaviour
     public float sipDuration = 1.0f; // The duration of the sip animation
     public float bottleAngleThreshold = 45.0f; // The angle threshold for the bottle to be tilted before sipping
     public GameObject bottleObject; // The GameObject representing the bottle
-    public Animator animator; // The Animator component for the player
+    /*public Animator animator; // The Animator component for the player*/
     public UnityEvent onSip; // The UnityEvent to trigger when the player sips from the bottle
 
     private bool isSipping = false; // Flag to indicate whether the player is currently sipping
@@ -18,14 +18,14 @@ public class DrinkFromBottle : MonoBehaviour
 
     public void StartDrinking()
     {
-        animator.SetBool("isDrinking", true);
+        /*animator.SetBool("isDrinking", true);*/
         Invoke("StopDrinking", 2f);
         onSip.Invoke();
     }
 
     void StopDrinking()
     {
-        animator.SetBool("isDrinking", false);
+       /* animator.SetBool("isDrinking", false);*/
     }
 
     void Update()
@@ -39,7 +39,7 @@ public class DrinkFromBottle : MonoBehaviour
             // Start the sip animation if not already sipping and the interval has passed
             if (!isSipping && sipTimer >= sipInterval)
             {
-                animator.SetTrigger("Drink"); // Trigger the drink animation
+                /*animator.SetTrigger("Drink"); // Trigger the drink animation*/
                 isSipping = true; // Set the sipping flag
                 sipTimer = 0.0f; // Reset the sip timer
             }
