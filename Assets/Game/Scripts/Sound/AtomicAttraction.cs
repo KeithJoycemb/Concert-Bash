@@ -41,9 +41,19 @@ public class AtomicAttraction : MonoBehaviour
     public atomScale atomScale1 = new atomScale();
 
 
+    public bool animatePos;
+    Vector3 startPoint;
+    public Vector3 destination;
+    public AnimationCurve animationCurve;
+    float animTimer;
+    public float animSpeed;
+    public int posAnimBand;
+    public bool posAnimBuffered;
+
+
     private void OnDrawGizmos()
     {
-        for(int i =0;i <attractPoints.Length;i++)
+        for(int i =0; i <attractPoints.Length; i++)
         {
             float evaluateStep = 0.125f ;
             Color color = gradient.Evaluate(Mathf.Clamp (evaluateStep * attractPoints[i],0,7));
@@ -54,12 +64,19 @@ public class AtomicAttraction : MonoBehaviour
                                         transform.position.z + (spacingBetweenAttractPoints * i * spacingDirection.z));
             Gizmos.DrawSphere(pos, scaleAttractPoints*0.5f);
         }
+
+        Gizmos.color = new Color(1, 1, 1);
+        Vector3 startpoint = transform.position;
+        Vector3 endpoint = transform.position + destination;
+        Gizmos.DrawLine(startpoint, endpoint);
+           
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        startPoint = transform.position;
         attractorArray = new GameObject[attractPoints.Length];
         atomArray = new GameObject[attractPoints.Length * amountOfAtomPerPoint];
         atomScaleSet = new float[attractPoints.Length * amountOfAtomPerPoint];
@@ -127,6 +144,7 @@ public class AtomicAttraction : MonoBehaviour
     {
         SelectAudioValues();
         AtomBehaviour();
+        AnimatePosition();
     }
 
     void AtomBehaviour()
@@ -148,13 +166,44 @@ public class AtomicAttraction : MonoBehaviour
                 sharedMaterial[i].SetColor("EmissionColor", audioColor);
             }
 
-            for (int j = 0; j < amountOfAtomPerPoint; j++)
-            {
-                atomArray[countAtom].transform.localScale = new Vector3(atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier,
-                    atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier,
-                    atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier);
-                countAtom++;
+            if(!System.Single.IsNaN(audioBandScale[attractPoints[i]])) 
+            { 
+                for (int j = 0; j < amountOfAtomPerPoint; j++)
+                {
+                    atomArray[countAtom].transform.localScale = new Vector3(atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier,
+                        atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier,
+                        atomScaleSet[countAtom] + audioBandScale[attractPoints[i]] * audioScaleMultiplier);
+                    countAtom++;
+                }
             }
+        }
+    }
+
+    void AnimatePosition()
+    {
+        if (animatePos)
+        {
+            if (posAnimBuffered)
+            {
+                if(!System.Single.IsNaN(AudioPeer.audioBandBuffer[posAnimBand]))
+                { 
+                animTimer += Time.deltaTime * AudioPeer.audioBandBuffer[posAnimBand] * animSpeed;
+                }
+            }
+            else
+            {
+                if (!System.Single.IsNaN(AudioPeer.audioBandBuffer[posAnimBand]))
+                {
+                    animTimer += Time.deltaTime * AudioPeer.audioBand[posAnimBand] * animSpeed;
+                }
+            }
+            if (animTimer >= 1)
+            {
+                animTimer -= 1f;
+            }
+            float alphaTime = animationCurve.Evaluate(animTimer);
+            Vector3 endpoint = destination + startPoint;
+            transform.position = Vector3.Lerp(startPoint, endpoint, alphaTime);
         }
     }
 

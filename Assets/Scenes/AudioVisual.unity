@@ -1488,16 +1488,33 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   material: {fileID: 2100000, guid: 8171418d8197e714b9a67b3eabbe1ca0, type: 2}
-  attractPoints: 0100000002000000030000000400000005000000060000000700000008000000
-  spacingDirection: {x: 1.43, y: 0, z: 0}
-  spacingBetweenAttractPoints: 20
-  scaleAttractPoints: 10
-  amountOfAtomPerPoint: 64
-  atomScaleMinMax: {x: 1, y: 6}
-  strengthOfAttraction: 100
-  maxMagnitude: 200
-  randomPosDistance: 10
+  attractPoints: 0000000001000000020000000300000004000000050000000600000007000000
+  spacingDirection: {x: 1, y: 0, z: 0}
+  spacingBetweenAttractPoints: 1
+  scaleAttractPoints: 2.52
+  amountOfAtomPerPoint: 16
+  atomScaleMinMax: {x: 0.4, y: 2}
+  strengthOfAttraction: 200
+  maxMagnitude: 400
+  randomPosDistance: 20
   useGravity: 0
+  audioScaleMultiplier: 1
+  audioEmissionMultiplier: 2
+  thresholdEmission: 0.08
+  emissionThreshold1: 0
+  emissionColour1: 0
+  atomScale1: 1
+  animatePos: 1
+  destination: {x: -5.24, y: -8.71, z: -1.66}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animSpeed: 0.5
+  posAnimBand: 4
+  posAnimBuffered: 1
 --- !u!4 &179722250
 Transform:
   m_ObjectHideFlags: 0
