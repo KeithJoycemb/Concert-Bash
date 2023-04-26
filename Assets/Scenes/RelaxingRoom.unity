@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 262.3369, g: 325.0498, b: 430.21924, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -697,6 +697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: whiskey16 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1917360071810661942, guid: 31af89b98d4fe5c46b4337d99d8e7b63, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2698a98919bc132438b1f58f23fbea2c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31af89b98d4fe5c46b4337d99d8e7b63, type: 3}
 --- !u!1 &828237866
@@ -881,7 +885,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4be44221bbcf69b4a9881e9c41603444, type: 2}
+  - {fileID: 2100000, guid: 2698a98919bc132438b1f58f23fbea2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5823,7 +5827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: e1c8e24189aa6a6479bdbd956884e03b, type: 3}
       propertyPath: m_Intensity
-      value: 132.3
+      value: 47.746483
       objectReference: {fileID: 0}
     - target: {fileID: 5958438921693756439, guid: e1c8e24189aa6a6479bdbd956884e03b, type: 3}
       propertyPath: m_Lightmapping
@@ -10695,7 +10699,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4be44221bbcf69b4a9881e9c41603444, type: 2}
+  - {fileID: 2100000, guid: 2698a98919bc132438b1f58f23fbea2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11042,5 +11046,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: whiskey16
       objectReference: {fileID: 0}
+    - target: {fileID: 1917360071810661942, guid: 31af89b98d4fe5c46b4337d99d8e7b63, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2698a98919bc132438b1f58f23fbea2c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31af89b98d4fe5c46b4337d99d8e7b63, type: 3}
