@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1418377dfb311ee4ca6ca68cbdaca6c7, type: 3}
-  m_Name: Money
+  m_Name: money
   m_EditorClassIdentifier: 
-  trackAudioClip: {fileID: 8300000, guid: ecc1309b81681ad4c9241f46be53b7a8, type: 3}
+  trackAudioClip: {fileID: 8300000, guid: 9ce4a3d63b2246746bdd6c4203982a35, type: 3}

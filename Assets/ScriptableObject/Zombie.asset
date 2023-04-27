@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1418377dfb311ee4ca6ca68cbdaca6c7, type: 3}
-  m_Name: Zombie
+  m_Name: zombie
   m_EditorClassIdentifier: 
-  trackAudioClip: {fileID: 8300000, guid: 7e16cf6dc784b254f8db289c821c5fd2, type: 3}
+  trackAudioClip: {fileID: 8300000, guid: 09258acdf2a14af418ebf37468052a09, type: 3}
